@@ -1,0 +1,423 @@
+<html>
+<head>
+	<title>Demo of the qToggle jQuery plugin</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="./qtoggle.fn.jquery.js"></script>
+	<script>
+
+		// used in the callback example
+		var exampleCallback = function(){
+			alert('the callback "exampleCallback" was fired.');
+		}
+
+		$(document).ready( function(){
+
+			// add qToggle click listener to all elements with 'data-qtoggle-selector' attribute
+			$('body').qToggle();
+
+			// uncomment to remove all qToggle listeners 
+			// $('body').off('.qToggle');
+
+			// alternate initialization with arguments for events
+			// this will slideToggle the element immediately next to the control
+			// the side toggle will have a 'fast' aka 200ms toggle using 'swing' easing
+			// and a javascript alert will fire once the animation is complete
+			// NOTICE - if you uncomment these lines, please comment out the line above or you will have unexpeted results
+			// $('body').qToggle({
+			// 	'effect' : 'slideToggle',
+			// 	'targets' :'next',
+			// 	'eventArgs':{
+			// 		'duration':'fast',
+			// 		'easing':'swing',
+			// 		'callback': function(){ alert('animation complete');}
+			// 	}
+			// });
+		
+		});
+
+	</script>
+	<style>
+	body{
+		background-color: #FDFDFD;
+		margin: 20px 40px;
+		font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+	}
+	h1,h2,h3,h4,h5,h6{
+		font-family: inherit;
+		font-weight: 600;
+	}
+
+	h1{
+		font-size: 60px;
+	}
+	h2{
+		font-size: 40px;
+		font-weight: 300;
+		margin-bottom:5px;
+	}
+
+	h3{
+		font-size: 20px;
+		font-weight: 300;
+	}
+
+	.example{
+		margin:0 0 25px 0;
+		padding: 0 0 25px 0;
+		border-bottom: 1px solid #ddd;
+	}
+	.example:last-child{
+		border: none;
+	}
+
+
+	.target{
+		background-color: #EEEEEE;
+		border: 1px solid #ddd;
+		margin: 20px 0;
+		padding:20px;
+
+	}
+
+	.control{
+		color: #EEE;
+		font-size: 13px;
+		font-weight: bold;
+		text-shadow: rgba(0,0,0,0.3) 0 -1px 0;
+		margin: 10px 0;
+		padding: 4px 12px;
+		border: 1px solid #111;
+		border-color: #298cba;
+		-moz-border-radius: 14px;
+		-khtml-border-radius: 14px;
+		-webkit-border-radius: 13px;
+		border-radius: 14px;
+		background: rgb(0,183,234); /* Old browsers */
+		background: -moz-linear-gradient(top,  rgba(0,183,234,1) 0%, rgba(0,158,195,1) 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,183,234,1)), color-stop(100%,rgba(0,158,195,1))); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  rgba(0,183,234,1) 0%,rgba(0,158,195,1) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+	}
+
+	a.control{
+		text-decoration: none;
+	}
+
+	.reset{
+		font-size: 11px;
+		font-family: arial, sans;
+		font-weight: normal;
+	}
+
+	.quick-links {
+		margin: 0;
+	}
+
+	.quick-links li {
+	  display: inline;
+	  margin: 0 10px;
+	}
+
+	.details {
+		margin-bottom: 40px;
+		font-size: 14px;
+	}
+
+	</style>
+
+
+</head>
+<body>
+
+	<h1>qToggle Examples</h1>
+
+	<ul class="quick-links">
+		<li><a href="#code">Code</a></li>
+    	<li><a href="#targeting">Targeting</a></li>
+    	<li><a href="#effects">Effects</a></li>
+    	<li><a href="#extras">Extas</a></li>
+    </ul>
+
+    <div id="code">
+
+    	<h2>Code</h2>
+
+		<div class="example">
+    		<h3>initializing the plugin:</h3>
+    		<div class="target">
+    			<code>
+    				$(function(){
+    				<br/>
+    				&nbsp;&nbsp;&nbsp;&nbsp;$('body').qToggle();
+    				<br/>
+    				});
+    			</code>
+    		</div>
+    		<p class="details" >This will place click event listeners on all elements in the body that have the data attribute 'data-qtoggle-selector'.  As a best practice apply the plugin to a limited scope inside the body, such as <code>$('body','.main-content').qToggle();</code></p>
+    		
+    		<h3>initializing the plugin with options:</h3>
+    		<div class="target">
+    			<code>
+    				$(function(){
+    				<br/>
+    				&nbsp;&nbsp;&nbsp;&nbsp;$('body').qToggle({
+    				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'effect':'slideToggle',
+    				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'targets':'next',
+    				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'eventArgs':{'duration':'fast','easing':'swing'}
+    				<br/>&nbsp;&nbsp;&nbsp;&nbsp;});
+    				<br/>});
+    			</code>
+    		</div>
+    		<p class="details" >You may pass options into the plugin to control many aspects its behavior. The plugin accepts one argument of an object. Look in the source code for what options can be passed to the plugin (until more documentation can be provided here).  In this example the slideToggle() function will be called instead of the default Toggle() and an DOM element next to the control will be toggled instead of the previous element. The slideToggle will be given 'fast' and 'swing' as arguments to control its animation.</p>
+
+
+    		<h3>html control and target:</h3>
+    		<div class="target">
+    			<code>
+    			<p>&lt;a href="#" data-qtoggle-selector=".target" data-qtoggle-text="show info" &gt;hide info&lt;/a&gt;</p>
+				<p>&lt;div class="target" &gt;I am the div that you can hide and show.&lt;/div&gt;</p>
+    			</code>
+    		</div>
+    		<p class="details" >the <code>&lt;a&gt;</code> is our <em>control</em> element. The <code>&lt;div&gt;</code> is our control's <em>target</em> element.  To apply a toggle effect simply add <code>data-qtoggle-selector</code> to your <em>control</em> element and set its value to a jQuery selector string which which will select your desired <em>target</em> element.</p>
+
+    	</div>
+    </div>
+
+
+
+
+	<div id="targeting">
+
+
+		<h2>Targeting
+			<!-- Reset -->
+			<a class="reset" href="#" data-qtoggle-selector="#targeting *" data-qtoggle-effect="show" >reset all</a>
+		</h2>
+
+		
+		<!-- toggle the element with the class 'example1' -->
+		<div class="example">
+			<h3> targeting a single element with simple selector</h3>
+			<a class="control" href="#" data-qtoggle-selector=".example1" >
+				<code>data-toggle-selector=".example1"</code>
+			</a>
+			<div class="target example1">target with class 'example1'</div>
+		</div>
+
+
+
+		<!-- toggle the immediate child element of #example2 with the class 'target' -->
+		<div id="example2" class="example">
+			<h3>targeting a single element using a complex selector</h3>
+			<a class="control" href="#" data-qtoggle-selector="#example2 > .target" >
+				<code>data-qtoggle-selector="#example2 > .target"</code>
+			</a>
+			<div class="target">child of #example2 with class 'target'</div>
+		</div>
+
+
+
+		<!-- toggle all the elements with the class 'multitarget' -->
+		<div class="example">
+			<h3> targeting a multiple elements with a single class selector.</h3>
+			<a class="control" href="#" data-qtoggle-selector=".multitarget" >
+				<code>data-qtoggle-selector=".multitarget"</code>
+			</a>
+			<div class="target multitarget">target with class 'multitarget'</div>
+			<div class="target multitarget">target with class 'multitarget'</div>
+			<div class="target multitarget">target with class 'multitarget'</div>
+		</div>
+
+
+
+		<!-- toggle the element with the ID 'myTargetID' -->
+		<div class="example">
+			<h3> targeting a single element with a ID selector.</h3>
+			<a class="control" href="#" data-qtoggle-selector="#myTargetID" >
+				<code>data-qtoggle-selector="#myTargetID"</code>
+			</a>
+			<div id="myTargetID" class="target">target with ID "myTargetID"</div>
+		</div>
+
+
+
+		<!-- toggle the previous or next element to the control -->
+		<div class="example">
+			<h3> targeting with keyword <code>prev</code></h3>
+
+			<div class="target">previous element</div>
+			<a class="control" href="#" data-qtoggle-selector="prev" >
+				<code>data-qtoggle-selector="prev"</code>
+			</a>
+
+			<h3> targeting with keyword <code>next</code></h3>
+			
+			<a class="control" href="#" data-qtoggle-selector="next" >
+				<code>data-qtoggle-selector="next"</code>
+			</a>
+			<div class="target">next element</div>
+			
+		</div>
+
+
+
+		<!-- toggle the all sibling elements of the control -->
+		<div class="example">
+			<h3> targeting with keyword <code>siblings</code></h3>
+			<div>	
+				<div class="target">sibling #1</div>
+				<a class="control" href="#" data-qtoggle-selector="siblings" >
+					<code>data-qtoggle-selector="siblings"</code>
+				</a>
+				<div class="target">sibling #2</div>
+				<div class="target">sibling #3</div>	
+			</div>
+		</div>
+
+
+
+		<!-- toggle the parent element of the control -->
+		<div class="example">
+			<h3> targeting with keyword <code>parent</code> 
+				<a class="reset" href="#" data-qtoggle-selector=".parent_example" data-qtoggle-effect="show" >reset</a>
+			</h3>
+			<div class="parent_example">
+				<p> I am a sibling paragraph in the same parent div</p>	
+				<a class="control" href="#" data-qtoggle-selector="parent" >hide parent ( and me, of course ).</a>
+			</div>
+		</div>
+
+
+
+		<!-- toggle self ( the control ) -->
+		<div class="example">
+			<h3> targeting with keyword <code>this</code> 
+				<a class="reset" href="#" data-qtoggle-selector=".self_example" data-toggle-effect="show" >reset</a>
+			</h3>
+			<a class="control self_example" href="#" data-qtoggle-selector="this" ><code>data-toggle-selector="this"</code></a>
+		</div>
+
+		<div class="example">
+			<h3> targeting with keyword <code>self</code> ( synonymous with 'this' ) 
+				<a class="reset" href="#" data-qtoggle-selector=".self_example2" data-qtoggle-effect="show" >reset</a>
+			</h3>
+			<a class="control self_example2" href="#" data-qtoggle-selector="self" ><code>data-qtoggle-selector="self"</code></a>
+		</div>
+
+
+	</div><!-- /#targets -->
+
+	<hr>
+
+
+	<div id="effects">
+
+		<h2>Effects
+			<!-- Reset examples -->
+			<a class="reset" href="#" data-qtoggle-selector="#effects .target" data-qtoggle-effect="toggle" >reset all</a>
+		</h2>
+
+		
+		<!-- Fade Out -->
+		<div class="example">
+			<h3> Fade out the target (don't toggle)</h3>
+			<a class="control" href="#" data-qtoggle-selector="next" data-qtoggle-effect="fadeOut" >
+				<code>data-qtoggle-effect="fade"</code>
+			</a>
+			<div class="target">target</div>
+		</div>
+
+
+
+		<!-- Show -->
+		<div class="example">
+			<h3> Only show hidden target <code>data-qtoggle-effect="show"</code> (don't toggle)</h3>
+			<a class="control" href="#" data-qtoggle-selector="next" data-qtoggle-effect="show" data-qtoggle-text="I've shown the target, so I don't have anything else to do." >
+				only show hidden target
+			</a>
+			<div class="target" style="display:none;">hidden target</div>
+		</div>
+
+
+
+		<!-- Fade toggle -->
+		<div class="example">
+			<h3> Fade toggle the target <code>data-qtoggle-effect="fadeToggle"</code></h3>
+			<a class="control" href="#" data-qtoggle-selector="next" data-qtoggle-effect="fadeToggle" >
+				<code>data-qtoggle-effect="fadeToggle"</code>
+			</a>
+			<div class="target">target</div>
+		</div>
+
+
+
+		<!-- Slide toggle -->
+		<div class="example">
+			<h3> Slide toggle the target <code>data-qtoggle-effect="slideToggle"</code></h3>
+			<a class="control" href="#" data-qtoggle-selector="next" data-qtoggle-effect="sideToggle" >
+				<code>data-qtoggle-effect="slideToggle"</code>
+			</a>
+			<div class="target">target</div>
+		</div>
+
+
+	</div><!-- /#effects -->
+
+		<hr>
+
+	<div id="#extras">
+
+		<h2>Extras</h2>
+
+
+			<!-- Toggle control text -->
+			<div class="example">
+				<h3> Change the inner html of the control with <code>data-qtoggle-event="show target"</code></h3>
+				<a class="control" href="#" data-qtoggle-selector="next" data-qtoggle-text="show target" >
+					hide target
+				</a>
+				<div class="target">target</div>
+			</div>
+
+			<!-- Toggle two element -->
+			<div class="example">
+				<h3> Hide one target and show another</h3>
+				<a class="control" href="#" data-qtoggle-selector=".swap-target" data-qtoggle-effect="slideToggle" >swap targets</a>
+				<div class="target swap-target">target A</div>
+				<div class="target swap-target" style="display:none">target B</div>
+			</div>
+
+			<!-- Toggle two element, setting duration and easing -->
+			<div class="example">
+				<h3> Hide one target and show another, slowly</h3>
+				<a class="control" href="#" 
+					data-qtoggle-selector=".swap-target-slow" 
+					data-qtoggle-effect="slideToggle" 
+					data-qtoggle-duration="900"
+					data-qtoggle-easing="swing" ><code>data-qtoggle-duration="900" data-qtoggle-easing="swing"</code></a>
+				<div class="target swap-target-slow">target A</div>
+				<div class="target swap-target-slow" style="display:none">target B</div>
+			</div>
+
+			<!-- Toggle with callback -->
+			<div class="example">
+				<h3> toggle the target and fire a callback function on animation completion</h3>
+				<a class="control" href="#" 
+					data-qtoggle-selector=".target.with.callback" 
+					data-qtoggle-callback="exampleCallback"><code>data-qtoggle-callback="exampleCallback"</code></a>
+				<div class="target with callback">
+					<code>
+						var exampleCallback = function(){
+						<br/>&nbsp;&nbsp;&nbsp;&nbsp;alert('callback fired.');
+						<br/>}
+					</code>
+				</div>
+			</div>
+
+	</div><!-- /#extras -->
+
+</body>
+</html>
