@@ -31,19 +31,20 @@
 		// settings with defaults
 		var settings = $.extend({
 			'data'        : {},                         // object - passed into event (reserved for later use)
-			'effect'      : 'toggle',                   // string - the animation effect on target
-			'events'      : 'click.qToggle',      // string - the event on control (namespaced)
-			'context'     : '[data-qtoggle-selector]',   // string - a selector that defines a control
-			'selector'    : 'qtoggle-selector',          // string - the name of the data that holds selector string of target
+			'effect'      : 'toggle',              // string - the animation effect on target
+			'events'      : 'click.qToggle',      		// string - the event on control (namespaced)
+			'context'     : '[data-qtoggle-selector]',  // string - a selector that defines a control
+			'selector'    : 'qtoggle-selector',         // string - the name of the data that holds selector string of target
 			'targets'     : 'prev',                     // string - the default target if none is specified in settings.selector
 			'innerHTML'   : '',                         // string - html to insert into control's text node. Empty string for no change
 			'eventArgs'   : {							// object - arguments passed to the effect function
-				'duration' 	:'fast',					// int|string - duration of animation in miliseconds or keywords 'fast','slow',etc.
-				'easing' 	:'linear',					// string - the animation effect, 'linear' or 'swing' are the only options in native jQuery but other plugins may provide other options
+				'duration' 	: 'fast',					// int|string - duration of animation in miliseconds or keywords 'fast','slow',etc. Note that the default 'toggle' effect will always have 0 duration
+				'easing' 	: 'linear',					// string - the animation effect, 'linear' or 'swing' are the only options in native jQuery but other plugins may provide other options
 				'callback' 	: null						// string|function - the function to call when animation is complete
 				}																			
 		}, options);
 	
+
 	// listen for events on the selector
 	this.on( settings.events, settings.context, settings.data, function(event){
 		
@@ -74,7 +75,11 @@
 
 		/* @var string|int - the timing for the animation */ 
 		var duration 	= control.data('qtoggle-duration') || settings.eventArgs.duration;
-		
+		/* 'toggle' effect should *always* be instantanious regardless of passed duration setting */
+		if( effect === 'toggle' ){
+			duration = 0;
+		}
+
 		/* @var string - the timing for the animation */ 
 		var easing    	= control.data('qtoggle-easing') || settings.eventArgs.easing;
 
