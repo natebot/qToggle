@@ -11,7 +11,7 @@ First, load the plugin script after you've loaded core jQuery on your page:
 
 `<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>`
 
-`<script src="./qtoggle.fn.jquery.js"></script>`
+`<script src="./jquery.qtoggle.js"></script>`
 
 
 Second, activate the plugin on some portion of your DOM:
