@@ -37,6 +37,7 @@
 			'selector'    : 'qtoggle-selector',         // string - the name of the data that holds selector string of target
 			'targets'     : 'prev',                     // string - the default target if none is specified in settings.selector
 			'innerHTML'   : '',                         // string - html to insert into control's text node. Empty string for no change
+			'toggleClass' : '',							// string - a class name to toggle if using the toggleClass effect
 			'eventArgs'   : {							// object - arguments passed to the effect function
 				'duration' 	: 'fast',					// int|string - duration of animation in miliseconds or keywords 'fast','slow',etc. Note that the default 'toggle' effect will always have 0 duration
 				'easing' 	: 'linear',					// string - the animation effect, 'linear' or 'swing' are the only options in native jQuery but other plugins may provide other options
@@ -55,7 +56,7 @@
 
 		/* @var object - a whitelist of available effects and DOM transversal keywords */
 		var defaults = {
-			'effects' :[ 'toggle', 'slideToggle', 'fadeToggle', 'hide' , 'show' , 'fadeOut', 'fadeIn', 'slideUp' , 'slideDown' ],
+			'effects' :[ 'toggle', 'slideToggle', 'fadeToggle', 'hide' , 'show' , 'fadeOut', 'fadeIn', 'slideUp' , 'slideDown', 'toggleClass' ],
 			'transversals' : [ 'prev' ,'next', 'parent', 'siblings', 'nextAll', 'prevAll' ,'children' ]
 		};
 
@@ -93,6 +94,14 @@
 			 control.html( innerHTML ); 
 		}
 		
+		// exceptions to standard effect arguments:
+		// if we are toggling a class then the first argument passed to effect function is a class name not a duration
+		if( effect === 'toggleClass' ){
+			duration = control.data('qtoggle-class') || settings.eventArgs.toggleClass;
+			easing = null;
+			callback = null;
+		}
+
 		// apply the desired effect on the DOM targets:
 		// first we check if we are using a DOM transversal keyword like 'next' or 'prev'
 		if( jQuery.inArray(targets, defaults.transversals) !== -1 )

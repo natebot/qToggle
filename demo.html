@@ -125,7 +125,9 @@
 		margin-bottom: 40px;
 		font-size: 14px;
 	}
-
+	.important{
+		color:red;
+	}
 	</style>
 
 
@@ -417,6 +419,15 @@
 				</div>
 			</div>
 
+			<!-- toggleClass example -->
+			<div class="example">
+				<h3> Toggle class on element</h3>
+				<a class="control" href="#" 
+					data-qtoggle-selector="next"
+					data-qtoggle-class="important" 
+					data-qtoggle-effect="toggleClass"><code>data-qtoggle-class="important" data-qtoggle-effect="toggleClass"</code></a>
+				<div class="target important">this text is red when class 'important' is applied.</div>
+			</div>
 	</div><!-- /#extras -->
 </div>
 </body>
