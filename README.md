@@ -19,7 +19,8 @@ Second, activate the plugin on some portion of your DOM:
 `<script>jQuery('#main-content').qToggle();</script>`
 
 ## Demo
-See demo.html for instructions for use.
+Visit https://dl.dropboxusercontent.com/u/117628/qToggle/demo.html
+Or load demo.html locally for instructions for use.
 
 ## License
 
