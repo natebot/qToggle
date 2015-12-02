@@ -1,20 +1,25 @@
 {
-  "name": "qToggle",
-  "version": "1.0.0",
+  "name": "qtoggle",
+  "description": "qtoggle makes toggling DOM elements easy with data attributes.",
   "main": [ "./jquery.qtoggle.js"],
+  "dependencies": {
+      "jquery": ">= 1.7.0"
+  },
   "ignore": [
   "**/.*",
   "node_modules",
   "components",
   "bower_components",
+  "test",
+  "tests"
 ],
-"dependencies": {
-  "jquery": ">= 1.7.0"
-},
 "homepage": "https://github.com/natebot/qToggle",
+"repository": {
+  "type": "git",
+  "url": "https://github.com/natebot/qToggle.git"
+}
 "authors": [
   "Nathan Letsinger"
 ],
-"description": "a simple jQuery plugin for toggling DOM elements with HTML5 data attributes.",
-"license": "MIT License"
+"license": "MIT"
 }
