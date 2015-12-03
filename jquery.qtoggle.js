@@ -75,8 +75,8 @@
 
 		/* @var string|int - the timing for the animation */
 		var duration 	= control.data('qtoggle-duration') || settings.eventArgs.duration;
-		/* 'toggle' effect should *always* be instantanious regardless of passed duration setting */
-		if( effect === 'toggle' ){
+		/* 'toggle' effect should *always* be 0 duration regardless of passed duration setting */
+		if ( 'toggle' === effect ){
 			duration = 0;
 		}
 
